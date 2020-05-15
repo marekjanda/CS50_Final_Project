@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Fixtures
+{% endblock %}
+
+{% block main %}
+    <h1>{{ thisleague }} fixtures</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Matchweek</th>
+                <th>Home team</th>
+                <th>Score</th>
+                <th>Away team</th>
+            </tr>
+        </thead>
+        {% if not matches %}
+        <tbody>
+            <tr>
+                <td>There aren't any {{ thisleague }} mathces played in the database</td>
+            </tr>
+        </tbody>
+        {% else %}
+            {% for match in matches %}
+            <tbody>
+                <tr>
+                    <td>{{ match["matchdate"] }}</td>
+                    <td>{{ match["round"] }}</td>
+                    <td>{{ match["hometeam"] }}</td>
+                    <td>{{ match["homescore"] }} : {{ match["awayscore"] }}</td>
+                    <td>{{ match["awayteam"] }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

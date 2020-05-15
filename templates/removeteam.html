@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add team
+{% endblock %}
+
+{% block main %}
+    <h1>Remove team from {{ thisleague }}</h1>
+     <form id="myForm" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="teamname" placeholder="Team name" type="text" id="teamname">
+        </div>
+
+        {% if noname == True %}
+        <p>Please select a team you want to remove</p>
+        {% endif %}
+
+        {% if noteam == True %}
+        <p>Team with this name does not exist in this league</p>
+        {% endif %}
+
+        <button class="btn btn-primary" id="rmvteam" type="submit">Remove team</button>
+    </form>
+
+    <p>
+         <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if teams %}
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </p>
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}

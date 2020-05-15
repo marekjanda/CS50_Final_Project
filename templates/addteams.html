@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add team
+{% endblock %}
+
+{% block main %}
+    <h1>Add team to the {{ thisleague }}</h1>
+     <form id="myForm" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="teamname" placeholder="Team name" type="text" id="teamname">
+        </div>
+
+        {% if noname %}
+        <p>Please fill in the name of the team</p>
+        {% endif %}
+
+        {% if registered %}
+        <p>Team with the same name already exists in this league</p>
+        {% endif %}
+
+        <button class="btn btn-primary" id="regteam" type="submit">Add team</button>
+    </form>
+
+    <p>
+         <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if teams %}
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </p>
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}

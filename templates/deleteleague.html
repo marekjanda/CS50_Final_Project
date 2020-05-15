@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete league
+{% endblock %}
+
+{% block main %}
+    <h1>Do you wish to delete {{ thisleague }}?</h1>
+    <form id="deleteleague" method="post">
+        <button class="btn btn-primary" type="submit">Yes</button>
+        <a class="btn btn-primary" href="/edit/{{thisleague}}">No</a>
+    </form>
+{% endblock %}

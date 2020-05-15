@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="admin_name" placeholder="Username" type="text">
+        </div>
+        {% if adminput == False %}
+        <p>Please fill in your username</p>
+        {% endif %}
+        {% if adminexists == False %}
+        <p>The username you provided does not exists in our database</p>
+        {% endif %}
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        {% if pswinput == False %}
+        <p>Please fill in your password</p>
+        {% endif %}
+        {% if wrongpsw %}
+        <p>Wrong password</p>
+        {% endif %}
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+{% endblock %}

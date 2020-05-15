@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Leagues
+{% endblock %}
+
+{% block main %}
+    <h1>{{ thisleague }}</h1>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for team in leaguetable %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

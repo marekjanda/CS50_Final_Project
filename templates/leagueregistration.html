@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register league
+{% endblock %}
+
+{% block main %}
+    <form action="/leagueregistration" id="myForm" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="leaguename" placeholder="League name" type="text" id="leaguename">
+        </div>
+
+        {% if noleaguename == True %}
+        <p>Please type in the league name</p>
+        {% endif %}
+
+        {% if taken == True %}
+        <p>League with this name already exists. Please choose different laeague name</p>
+        {% endif %}
+
+        <button class="btn btn-primary" id="regleague" type="submit">Register league</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

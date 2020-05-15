@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Rename league
+{% endblock %}
+
+{% block main %}
+    <h1>Rename {{ thisleague }}</h1>
+    <form id="renameleague" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="new" placeholder="New name" type="text">
+        </div>
+
+        {% if noinput == True %}
+        <p>Please fill in the new name of your league</p>
+
+        {% elif leagueexists == True %}
+        <p>A league with league name you provided already exists in our database</p>
+        {% endif %}
+
+        <button class="btn btn-primary" type="submit">Change</button>
+    </form>
+{% endblock %}

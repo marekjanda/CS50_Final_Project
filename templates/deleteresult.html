@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Fixtures
+{% endblock %}
+
+{% block main %}
+    <h1>{{ thisleague }} fixtures</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Matchweek</th>
+                <th>Home team</th>
+                <th>Score</th>
+                <th>Away team</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        {% if not results %}
+        <tbody>
+            <tr>
+                <td>There aren't any {{ thisleague }} mathces played in the database</td>
+            </tr>
+        </tbody>
+        {% else %}
+            <tbody>
+                {% for result in results %}
+                <form id="res" method="POST">
+                    <tr>
+                        <td name="matchdate">{{ result["matchdate"] }}</td>
+                        <input type="hidden" name="matchdate" value="{{ result["matchdate"] }}" />
+                        <td name="round">{{ result["round"] }}</td>
+                        <input type="hidden" name="round" value="{{ result["round"] }}" />
+                        <td name="hometeam">{{ result["hometeam"] }}</td>
+                        <input type="hidden" name="hometeam" value="{{ result["hometeam"] }}" />
+                        <td name=score>{{ result["homescore"] }} : {{ result["awayscore"] }}</td>
+                        <input type="hidden" name="homescore" value="{{ result["homescore"] }}" />
+                        <input type="hidden" name="awayscore" value="{{ result["awayscore"] }}" />
+                        <td name="awayteam">{{ result["awayteam"] }}</td>
+                        <input type="hidden" name="awayteam" value="{{ result["awayteam"] }}" />
+                        <td><button class="btn btn-primary" type="submit">Delete</button></td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+{% endblock %}

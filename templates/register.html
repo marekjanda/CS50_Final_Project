@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/register" id="myForm" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" id="username">
+        </div>
+
+        {% if nousername %}
+        <p>Please type in your user name</p>
+        {% endif %}
+
+        {% if taken %}
+        <p>User name already taken</p>
+        {% endif %}
+
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+
+        {% if nopsw %}
+        <p>Please fill your password</p>
+        {% endif %}
+
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm your password" type="password">
+        </div>
+
+        {% if noconfirm %}
+        <p>Please confirm your password</p>
+        {% endif %}
+
+        {% if nomatch %}
+        <p>Passwords did not match</p>
+        {% endif %}
+
+        <button class="btn btn-primary" id="submit" type="submit">Register</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

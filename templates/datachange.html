@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change values in the league
+{% endblock %}
+
+{% block main %}
+    <h1>Change values in {{ thisleague }}</h1>
+     <form id="myForm" method="post">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Select team:     </label>
+                <select class="form-control" id="teamname" name="teamname">
+                    <option>Select team</option>
+                    {% if teams %}
+                        {% for team in teams %}
+                            <option>{{ team["teamname"] }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+                <select class="form-control" id="item" name="item">
+                    <option>What do you want ot change?</option>
+                    <option>Team name</option>
+                    <option>P</option>
+                    <option>W</option>
+                    <option>D</option>
+                    <option>L</option>
+                    <option>GS</option>
+                    <option>GA</option>
+                    <option>GD</option>
+                    <option>Pts</option>
+                </select>
+                New value:
+                <input autocomplete="off" autofocus class="form-control" name="new" type="text" required />
+        </div>
+
+        {% if noteam == True %}
+        <p>Please select a team whose data you wish to chagne</p>
+
+        {% elif noitem == True %}
+        <p>Please select an item you wish to change</p>
+
+        {% elif novalue %}
+        <p>Please fill in the new value of the selected item</p>
+        {% endif %}
+
+        <button class="btn btn-primary" id="rmvteam" type="submit">Submit</button>
+    </form>
+    <p>
+    {% if not teams %}
+            <p>The are no teams registered in this league </p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </p>
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}

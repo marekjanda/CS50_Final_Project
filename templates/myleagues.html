@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Leagues
+{% endblock %}
+
+{% block main %}
+    <h1>My leagues</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>League name</th>
+                <th>League table</th>
+                <th>Fixtures</th>
+            </tr>
+        </thead>
+        {% if not leagues %}
+        <tbody>
+            <tr>
+                <td>There aren't any legues registered in the database</td>
+            </tr>
+        </tbody>
+        {% else %}
+            {% for league in leagues %}
+            <tbody>
+                <tr>
+                    <td>{{ league["leaguename"] }}</td>
+                    <td><a class="nav-link" href="/mytable/{{league["leaguename"]}}">View table</a></td>
+                    <td><a class="nav-link" href="/leaguefixtures/{{league["leaguename"]}}">View fixtures</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

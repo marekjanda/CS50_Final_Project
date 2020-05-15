@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add result
+{% endblock %}
+
+{% block main %}
+    <h1>Add result in {{ thisleague }}</h1>
+     <form id="myForm" method="post">
+
+         <div class="form-group">
+             <label for="matchdate">Date of the match</label>
+             <input type="date" id="matchdate" name="matchdate" class="form-control datepicker" required>
+             <label for="matchdate">Matchweek:</label>
+             <input autocomplete="off" autofocus class="form-control" id="matchweek" name="matchweek" type="number" min="1" required />
+
+             {% if noday == True %}
+             <p>Please select a date of the match</p>
+
+             {% elif noround == True %}
+             <p> Please fselect matchweek during which the match took place</p>
+
+             {% elif played == True %}
+             <p>Same team can't play twice in same round / matchweek in the same league</p>
+             {% endif %}
+
+         </div>
+
+         <div class="form-group">
+            <label for="exampleFormControlSelect1">Select teams:     </label>
+                <select class="form-control" id="hometeam" name="hometeam">
+                    <option>Select team</option>
+                    {% if teams %}
+                        {% for team in teams %}
+                            <option>{{ team["teamname"] }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+
+                <input autocomplete="off" autofocus class="form-control" name="homescore" type="number" required />
+                :
+                <input autocomplete="off" autofocus class="form-control" name="awayscore" type="number" required />
+
+                <select class="form-control" id="awayteam" name="awayteam">
+                    <option>Select team</option>
+                    {% if teams %}
+                        {% for team in teams %}
+                            <option>{{ team["teamname"] }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+
+                {% if nohometeam == True %}
+                <p>Please select hometeam</p>
+
+                {% elif sameteam == True %}
+                <p>You've selected the same team twice</p>
+
+                {% elif noawayteam == True %}
+                <p>Please select awayteam</p>
+
+                {% elif wrongscore == True %}
+                <p>Please fill the complete score!</p>
+                {% endif %}
+
+        </div>
+
+        <button class="btn btn-primary" id="rmvteam" type="submit">Submit</button>
+    </form>
+    <p>
+    {% if not teams %}
+            <p>The are no teams registered in this league </p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </p>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').pickadate();
+    </script>
+{% endblock %}

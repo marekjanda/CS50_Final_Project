@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    League managment
+{% endblock %}
+
+{% block main %}
+    <p>
+        <h1>League management</h1>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>League ID</th>
+                <th>League name</th>
+                <th>Number of teams</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for league in myleagues %}
+            <tr>
+                <td>{{ league["league_ID"] }}</td>
+                <td>{{ league["leaguename"] }}</td>
+                <td>{{ league["number_of_teams"] }}</td>
+                <td><a class="nav-link" href="/edit/{{league["leaguename"]}}">Manage this league</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

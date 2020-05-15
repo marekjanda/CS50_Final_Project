@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block main %}
+    <p>
+        <h1>{{ thisleague }}</h1>
+    </p>
+    <p>
+        <h1>Edit</h1>
+    </p>
+
+    <div class="btn-group dropright">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="result/{{thisleague}}">Add result</a>
+              <a class="dropdown-item" href="datachange/{{thisleague}}">Change data</a>
+              <a class="dropdown-item" href="addteam/{{thisleague}}">Add team to the league</a>
+              <a class="dropdown-item" href="rmvteam/{{thisleague}}">Remove team from the league</a>
+              <a class="dropdown-item" href="renameleague/{{thisleague}}">Change the name of the league</a>
+              <a class="dropdown-item" href="deleteleague/{{thisleague}}">Delete league</a>
+              <a class="dropdown-item" href="deleteresult/{{thisleague}}">Delete result</a>
+          </div>
+    </div>
+
+    <p>
+    {% if not teams %}
+            <p>The are no teams registered in this league </p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GS</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team["teamname"] }}</td>
+                    <td>{{ team["P"] }}</td>
+                    <td>{{ team["W"] }}</td>
+                    <td>{{ team["D"] }}</td>
+                    <td>{{ team["L"] }}</td>
+                    <td>{{ team["GS"] }}</td>
+                    <td>{{ team["GA"] }}</td>
+                    <td>{{ team["GD"] }}</td>
+                    <td>{{ team["Pts"] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </p>
+
+{% endblock %}
